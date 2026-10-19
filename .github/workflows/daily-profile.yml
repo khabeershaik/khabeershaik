@@ -1,1 +1,67 @@
 
+
+name: Daily Profile Update
+
+on:
+  schedule:
+    - cron: "35 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-profile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update README
+        run: |
+          python3 - <<'PY'
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          from pathlib import Path
+
+          p = Path("README.md")
+          text = p.read_text(encoding="utf-8")
+
+          start = "<!-- DAILY-ACTIVITY-START -->"
+          end = "<!-- DAILY-ACTIVITY-END -->"
+
+          if start not in text or end not in text:
+              raise SystemExit(
+                  "Add the daily activity markers to README.md first"
+              )
+
+          today = datetime.now(
+              ZoneInfo("Asia/Kolkata")
+          ).strftime("%d %B %Y")
+
+          before, rest = text.split(start, 1)
+          _, after = rest.split(end, 1)
+
+          updated = (
+              f"{start}\n"
+              f"Last automated profile update: {today}.\n"
+              f"{end}"
+          )
+
+          p.write_text(
+              before + updated + after,
+              encoding="utf-8"
+          )
+          PY
+
+      - name: Commit changes
+        env:
+          GH_EMAIL: ${{ secrets.GH_COMMIT_EMAIL }}
+        run: |
+          git config user.name "Khabeer Shaik"
+          git config user.email "$GH_EMAIL"
+          git add README.md
+          git diff --cached --quiet && exit 0
+          git commit -m "chore: daily profile update"
+          git push
