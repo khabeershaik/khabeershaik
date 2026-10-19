@@ -1,10 +1,9 @@
 
-
 name: Daily Profile Update
 
-on:
+'on':
   schedule:
-    - cron: "35 18 * * *"
+    - cron: '35 18 * * *'
   workflow_dispatch:
 
 permissions:
@@ -32,9 +31,7 @@ jobs:
           end = "<!-- DAILY-ACTIVITY-END -->"
 
           if start not in text or end not in text:
-              raise SystemExit(
-                  "Add the daily activity markers to README.md first"
-              )
+              raise SystemExit("Daily activity markers missing in README")
 
           today = datetime.now(
               ZoneInfo("Asia/Kolkata")
@@ -49,10 +46,7 @@ jobs:
               f"{end}"
           )
 
-          p.write_text(
-              before + updated + after,
-              encoding="utf-8"
-          )
+          p.write_text(before + updated + after, encoding="utf-8")
           PY
 
       - name: Commit changes
@@ -62,6 +56,9 @@ jobs:
           git config user.name "Khabeer Shaik"
           git config user.email "$GH_EMAIL"
           git add README.md
-          git diff --cached --quiet && exit 0
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
           git commit -m "chore: daily profile update"
           git push
