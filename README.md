@@ -1,5 +1,5 @@
 # 💫 About Me:
-## 👨‍💻 About Me<br><br>🎓 B.Tech Computer Science & Engineering (AI & ML) Student<br><br>💻 Passionate about Software Development, Artificial Intelligence, and Machine Learning<br><br>🚀 Building projects with Python while strengthening Data Structures & Algorithms<br><br>🌱 Continuously learning modern development tools and best coding practices<br><br>🤝 Open to internships, open-source contributions, and collaborative development projects<br><br>🎯 Aspiring Software Engineer focused on writing clean, efficient, and scalable code<br><br>💬 Ask me about Python, Git & GitHub, SQL, and DSA<br><br>📫 Reach me at: khabeershaik06@example.com
+## 👨‍💻 About Me<br><br>🎓 B.Tech Computer Science & Engineering (AI & ML) Student<br><br>💻 Passionate about Software Development, Artificial Intelligence, and Machine Learning<br><br>🚀 Building projects with Python while strengthening Data Structures & Algorithms<br><br>🌱 Continuously learning modern development tools and best coding practices<br><br>🤝 Open to internships, open-source contributions, and collaborative development projects<br><br>🎯 Aspiring Software Engineer focused on writing clean, efficient, and scalable code<br><br>💬 Ask me about Python, Git & GitHub, SQL, and DSA<br><br>📫 Reach me at: khabeershaik06@gmail.com
 
 
 ## 🌐 Socials:
